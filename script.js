@@ -3,7 +3,7 @@
 // Simulated data for the dashboard
 const simulatedData = {
     devices: [
-        { id: 1, name: 'Living Room Thermostat', type: 'Temperature Sensor', status: 'online', lastActive: '2 mins ago' },
+        { id: 1, name: 'Bedroom Thermostat', type: 'Temperature Sensor', status: 'online', lastActive: '1 min ago' },
         { id: 2, name: 'Kitchen Light', type: 'Smart Light', status: 'online', lastActive: '5 mins ago' },
         { id: 3, name: 'Bedroom Light', type: 'Smart Light', status: 'online', lastActive: '10 mins ago' },
         { id: 4, name: 'Front Door Camera', type: 'Security Camera', status: 'online', lastActive: '1 min ago' },
