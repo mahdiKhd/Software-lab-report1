@@ -18,8 +18,9 @@ No backend is required as the dashboard currently uses simulated data. In a prod
 ## Getting Started
 
 1. Clone this repository
-2. Open `index.html` in your browser
-3. Explore the dashboard
+2. Install dependencies: `npm install`
+3. Open `index.html` in your browser
+4. Explore the dashboard
 
 ## Development
 
@@ -56,6 +57,10 @@ npm test
 ```
 
 Test files are located in the `tests` directory and follow the naming convention `*.test.js`.
+
+### Code Reviews
+
+We follow a set of guidelines for code reviews to maintain code quality and consistency. Please refer to [CodeReviewGuidelines.md](CodeReviewGuidelines.md) for more information.
 
 ## Customization
 
