@@ -113,10 +113,10 @@ function updateDateTime() {
 function updateOverviewStats() {
     const onlineDevices = simulatedData.devices.filter(device => device.status === 'online').length;
     const warningDevices = simulatedData.devices.filter(device => device.status === 'warning').length;
-    
+
     elements.activeDevices.textContent = onlineDevices;
     elements.alertsCount.textContent = warningDevices;
-    
+
     // Calculate average temperature using the imported function
     const temps = [
         simulatedData.temperatures.living.current,
@@ -125,7 +125,7 @@ function updateOverviewStats() {
     ];
     const avgTemp = calculateAverageTemperature(temps);
     elements.avgTemp.textContent = formatTemperature(avgTemp);
-    
+
     // Simulate system load
     const systemLoad = Math.floor(Math.random() * 30) + 20; // Random between 20-50%
     elements.systemLoad.textContent = systemLoad + '%';
@@ -137,7 +137,7 @@ function updateTemperatures() {
     elements.tempLiving.textContent = formatTemperature(simulatedData.temperatures.living.current);
     elements.tempKitchen.textContent = formatTemperature(simulatedData.temperatures.kitchen.current);
     elements.tempBedroom.textContent = formatTemperature(simulatedData.temperatures.bedroom.current);
-    
+
     // Add temperature safety indicators
     updateTemperatureSafetyIndicators();
 }
@@ -146,12 +146,12 @@ function updateTemperatures() {
 function updateTemperatureSafetyIndicators() {
     // Check if elements exist
     if (!elements.tempLiving || !elements.tempKitchen || !elements.tempBedroom) return;
-    
+
     // Check if temperatures are safe and update UI accordingly
     const livingTemp = simulatedData.temperatures.living.current;
     const kitchenTemp = simulatedData.temperatures.kitchen.current;
     const bedroomTemp = simulatedData.temperatures.bedroom.current;
-    
+
     updateSafetyClass(elements.tempLiving, isTemperatureSafe(livingTemp));
     updateSafetyClass(elements.tempKitchen, isTemperatureSafe(kitchenTemp));
     updateSafetyClass(elements.tempBedroom, isTemperatureSafe(bedroomTemp));

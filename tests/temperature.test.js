@@ -59,4 +59,4 @@ describe('isTemperatureSafe', () => {
         expect(isTemperatureSafe(10, 5, 15)).toBe(true);
         expect(isTemperatureSafe(20, 5, 15)).toBe(false);
     });
-}); 
+});

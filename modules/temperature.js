@@ -12,10 +12,10 @@ function calculateAverageTemperature(temperatures) {
     if (!Array.isArray(temperatures) || temperatures.length === 0) {
         return 0;
     }
-    
+
     const sum = temperatures.reduce((total, temp) => total + temp, 0);
     const average = sum / temperatures.length;
-    
+
     // Round to 1 decimal place
     return Math.round(average * 10) / 10;
 }
@@ -42,4 +42,4 @@ function isTemperatureSafe(temperature, minSafe = 18, maxSafe = 30) {
 }
 
 // Export functions for use in other modules and for testing
-export { calculateAverageTemperature, formatTemperature, isTemperatureSafe }; 
+export { calculateAverageTemperature, formatTemperature, isTemperatureSafe };
