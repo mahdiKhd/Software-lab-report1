@@ -1,5 +1,8 @@
 // IoT Dashboard JavaScript
 
+// Import temperature module functions
+import { calculateAverageTemperature, formatTemperature, isTemperatureSafe } from './modules/temperature.js';
+
 // Simulated data for the dashboard
 const simulatedData = {
     devices: [
@@ -110,19 +113,19 @@ function updateDateTime() {
 function updateOverviewStats() {
     const onlineDevices = simulatedData.devices.filter(device => device.status === 'online').length;
     const warningDevices = simulatedData.devices.filter(device => device.status === 'warning').length;
-
+    
     elements.activeDevices.textContent = onlineDevices;
     elements.alertsCount.textContent = warningDevices;
-
-    // Calculate average temperature
+    
+    // Calculate average temperature using the imported function
     const temps = [
         simulatedData.temperatures.living.current,
         simulatedData.temperatures.kitchen.current,
         simulatedData.temperatures.bedroom.current
     ];
-    const avgTemp = temps.reduce((sum, temp) => sum + temp, 0) / temps.length;
-    elements.avgTemp.textContent = avgTemp.toFixed(1) + '°C';
-
+    const avgTemp = calculateAverageTemperature(temps);
+    elements.avgTemp.textContent = formatTemperature(avgTemp);
+    
     // Simulate system load
     const systemLoad = Math.floor(Math.random() * 30) + 20; // Random between 20-50%
     elements.systemLoad.textContent = systemLoad + '%';
@@ -130,9 +133,39 @@ function updateOverviewStats() {
 
 // Update temperature displays
 function updateTemperatures() {
-    elements.tempLiving.textContent = simulatedData.temperatures.living.current + '°C';
-    elements.tempKitchen.textContent = simulatedData.temperatures.kitchen.current + '°C';
-    elements.tempBedroom.textContent = simulatedData.temperatures.bedroom.current + '°C';
+    // Format temperatures using the imported function
+    elements.tempLiving.textContent = formatTemperature(simulatedData.temperatures.living.current);
+    elements.tempKitchen.textContent = formatTemperature(simulatedData.temperatures.kitchen.current);
+    elements.tempBedroom.textContent = formatTemperature(simulatedData.temperatures.bedroom.current);
+    
+    // Add temperature safety indicators
+    updateTemperatureSafetyIndicators();
+}
+
+// New function to update temperature safety indicators
+function updateTemperatureSafetyIndicators() {
+    // Check if elements exist
+    if (!elements.tempLiving || !elements.tempKitchen || !elements.tempBedroom) return;
+    
+    // Check if temperatures are safe and update UI accordingly
+    const livingTemp = simulatedData.temperatures.living.current;
+    const kitchenTemp = simulatedData.temperatures.kitchen.current;
+    const bedroomTemp = simulatedData.temperatures.bedroom.current;
+    
+    updateSafetyClass(elements.tempLiving, isTemperatureSafe(livingTemp));
+    updateSafetyClass(elements.tempKitchen, isTemperatureSafe(kitchenTemp));
+    updateSafetyClass(elements.tempBedroom, isTemperatureSafe(bedroomTemp));
+}
+
+// Helper function to update safety class
+function updateSafetyClass(element, isSafe) {
+    if (isSafe) {
+        element.classList.remove('unsafe-temp');
+        element.classList.add('safe-temp');
+    } else {
+        element.classList.remove('safe-temp');
+        element.classList.add('unsafe-temp');
+    }
 }
 
 // Setup lighting controls

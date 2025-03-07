@@ -11,6 +11,7 @@ This dashboard is built with:
 - **JavaScript** (ES6+) for interactivity and data handling
 - **Chart.js** for data visualization
 - **ESLint** for code quality and consistency
+- **Jest** for unit testing
 
 No backend is required as the dashboard currently uses simulated data. In a production environment, you would connect this to your IoT backend system via APIs.
 
@@ -44,6 +45,17 @@ npm run lint
 # Fix automatically fixable issues
 npm run lint:fix
 ```
+
+### Testing
+
+The project uses Jest for unit testing:
+
+```bash
+# Run tests
+npm test
+```
+
+Test files are located in the `tests` directory and follow the naming convention `*.test.js`.
 
 ## Customization
 
