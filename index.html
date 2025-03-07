@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Multi-Module Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <h2>IoT Control</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="fas fa-bell"></i> Alerts</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+            </nav>
+            <div class="system-status">
+                <h3>System Status</h3>
+                <div class="status-item online">
+                    <span class="status-dot"></span>
+                    <span>Cloud Connection</span>
+                </div>
+                <div class="status-item online">
+                    <span class="status-dot"></span>
+                    <span>Gateway</span>
+                </div>
+                <div class="status-item offline">
+                    <span class="status-dot"></span>
+                    <span>Backup System</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search devices, modules...">
+                </div>
+                <div class="user-actions">
+                    <button class="btn"><i class="fas fa-plus"></i> Add Device</button>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Profile">
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-overview">
+                <h1>IoT Dashboard Overview</h1>
+                <div class="date-time">Last updated: <span id="last-updated">Loading...</span></div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-server"></i></div>
+                        <div class="stat-info">
+                            <h3>Active Devices</h3>
+                            <p class="stat-value" id="active-devices">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="stat-info">
+                            <h3>Alerts</h3>
+                            <p class="stat-value" id="alerts-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-thermometer-half"></i></div>
+                        <div class="stat-info">
+                            <h3>Avg. Temperature</h3>
+                            <p class="stat-value" id="avg-temp">--°C</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="stat-info">
+                            <h3>System Load</h3>
+                            <p class="stat-value" id="system-load">0%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Temperature Module -->
+                <div class="module" id="temperature-module">
+                    <div class="module-header">
+                        <h2><i class="fas fa-thermometer-half"></i> Temperature Sensors</h2>
+                        <div class="module-actions">
+                            <button class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="sensor-readings">
+                            <div class="sensor-item">
+                                <div class="sensor-info">
+                                    <h4>Living Room</h4>
+                                    <p class="sensor-value" id="temp-living">--°C</p>
+                                </div>
+                                <div class="sensor-chart" id="chart-temp-living"></div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-info">
+                                    <h4>Kitchen</h4>
+                                    <p class="sensor-value" id="temp-kitchen">--°C</p>
+                                </div>
+                                <div class="sensor-chart" id="chart-temp-kitchen"></div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-info">
+                                    <h4>Bedroom</h4>
+                                    <p class="sensor-value" id="temp-bedroom">--°C</p>
+                                </div>
+                                <div class="sensor-chart" id="chart-temp-bedroom"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lighting Control Module -->
+                <div class="module" id="lighting-module">
+                    <div class="module-header">
+                        <h2><i class="fas fa-lightbulb"></i> Lighting Control</h2>
+                        <div class="module-actions">
+                            <button class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="control-grid">
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <h4>Living Room</h4>
+                                    <label class="switch">
+                                        <input type="checkbox" id="light-living">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="brightness-control">
+                                    <span>Brightness</span>
+                                    <input type="range" min="0" max="100" value="80" id="brightness-living">
+                                    <span id="brightness-living-value">80%</span>
+                                </div>
+                            </div>
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <h4>Kitchen</h4>
+                                    <label class="switch">
+                                        <input type="checkbox" id="light-kitchen">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="brightness-control">
+                                    <span>Brightness</span>
+                                    <input type="range" min="0" max="100" value="60" id="brightness-kitchen">
+                                    <span id="brightness-kitchen-value">60%</span>
+                                </div>
+                            </div>
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <h4>Bedroom</h4>
+                                    <label class="switch">
+                                        <input type="checkbox" id="light-bedroom">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="brightness-control">
+                                    <span>Brightness</span>
+                                    <input type="range" min="0" max="100" value="40" id="brightness-bedroom">
+                                    <span id="brightness-bedroom-value">40%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Energy Consumption Module -->
+                <div class="module" id="energy-module">
+                    <div class="module-header">
+                        <h2><i class="fas fa-bolt"></i> Energy Consumption</h2>
+                        <div class="module-actions">
+                            <button class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="energy-overview">
+                            <div class="energy-total">
+                                <div class="energy-chart" id="energy-chart"></div>
+                                <div class="energy-stats">
+                                    <div class="energy-stat">
+                                        <h4>Today</h4>
+                                        <p id="energy-today">0 kWh</p>
+                                    </div>
+                                    <div class="energy-stat">
+                                        <h4>This Week</h4>
+                                        <p id="energy-week">0 kWh</p>
+                                    </div>
+                                    <div class="energy-stat">
+                                        <h4>This Month</h4>
+                                        <p id="energy-month">0 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="energy-devices">
+                                <h4>Top Consumers</h4>
+                                <ul class="device-list" id="energy-consumers">
+                                    <li class="device-item">
+                                        <span class="device-name">HVAC System</span>
+                                        <span class="device-usage">45%</span>
+                                    </li>
+                                    <li class="device-item">
+                                        <span class="device-name">Water Heater</span>
+                                        <span class="device-usage">25%</span>
+                                    </li>
+                                    <li class="device-item">
+                                        <span class="device-name">Refrigerator</span>
+                                        <span class="device-usage">15%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Module -->
+                <div class="module" id="security-module">
+                    <div class="module-header">
+                        <h2><i class="fas fa-shield-alt"></i> Security System</h2>
+                        <div class="module-actions">
+                            <button class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="security-status">
+                            <div class="status-indicator armed">
+                                <i class="fas fa-lock"></i>
+                                <span id="security-status">Armed</span>
+                            </div>
+                            <div class="security-actions">
+                                <button class="btn btn-danger" id="disarm-btn">Disarm System</button>
+                                <button class="btn" id="arm-btn" disabled>Arm System</button>
+                            </div>
+                        </div>
+                        <div class="camera-feeds">
+                            <h4>Camera Feeds</h4>
+                            <div class="camera-grid">
+                                <div class="camera-item">
+                                    <div class="camera-feed" id="camera-front">
+                                        <i class="fas fa-video"></i>
+                                        <span>Front Door</span>
+                                    </div>
+                                </div>
+                                <div class="camera-item">
+                                    <div class="camera-feed" id="camera-back">
+                                        <i class="fas fa-video"></i>
+                                        <span>Back Yard</span>
+                                    </div>
+                                </div>
+                                <div class="camera-item">
+                                    <div class="camera-feed" id="camera-garage">
+                                        <i class="fas fa-video"></i>
+                                        <span>Garage</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Module -->
+                <div class="module" id="weather-module">
+                    <div class="module-header">
+                        <h2><i class="fas fa-cloud-sun"></i> Weather Station</h2>
+                        <div class="module-actions">
+                            <button class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="weather-overview">
+                            <div class="current-weather">
+                                <div class="weather-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="weather-details">
+                                    <h3 id="weather-location">Loading location...</h3>
+                                    <p class="temperature" id="weather-temp">--°C</p>
+                                    <p class="condition" id="weather-condition">--</p>
+                                </div>
+                            </div>
+                            <div class="weather-stats">
+                                <div class="weather-stat">
+                                    <i class="fas fa-wind"></i>
+                                    <span>Wind</span>
+                                    <p id="weather-wind">-- km/h</p>
+                                </div>
+                                <div class="weather-stat">
+                                    <i class="fas fa-tint"></i>
+                                    <span>Humidity</span>
+                                    <p id="weather-humidity">--%</p>
+                                </div>
+                                <div class="weather-stat">
+                                    <i class="fas fa-compress-arrows-alt"></i>
+                                    <span>Pressure</span>
+                                    <p id="weather-pressure">-- hPa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Device Management Module -->
+                <div class="module" id="devices-module">
+                    <div class="module-header">
+                        <h2><i class="fas fa-microchip"></i> Device Management</h2>
+                        <div class="module-actions">
+                            <button class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="device-management">
+                            <div class="device-filters">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="online">Online</button>
+                                <button class="filter-btn" data-filter="offline">Offline</button>
+                                <button class="filter-btn" data-filter="warning">Warnings</button>
+                            </div>
+                            <div class="device-list-container">
+                                <table class="device-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Device Name</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Last Active</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="device-list">
+                                        <!-- Device list will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
