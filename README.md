@@ -58,6 +58,16 @@ npm test
 
 Test files are located in the `tests` directory and follow the naming convention `*.test.js`.
 
+### CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- Automatically runs ESLint and Jest tests on pull requests
+- Ensures code quality before merging
+- Generates and uploads test coverage reports
+
+The workflow configuration is located in `.github/workflows/ci-cd.yml`.
+
 ### Code Reviews
 
 We follow a set of guidelines for code reviews to maintain code quality and consistency. Please refer to [CodeReviewGuidelines.md](CodeReviewGuidelines.md) for more information.
