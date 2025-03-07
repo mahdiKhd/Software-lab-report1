@@ -644,6 +644,28 @@ input:checked + .slider:before {
     color: var(--gray-color);
 }
 
+/* Temperature safety indicators */
+.safe-temp {
+    color: var(--secondary-color);
+}
+
+.unsafe-temp {
+    color: var(--danger-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
     .modules-grid {

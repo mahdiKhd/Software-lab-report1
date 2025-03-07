@@ -1,0 +1,32 @@
+{
+  "name": "software-lab-report1",
+  "version": "1.0.0",
+  "description": "IoT Multi-Module Dashboard",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahdiKhd/Software-lab-report1.git"
+  },
+  "keywords": [
+    "iot",
+    "dashboard",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mahdiKhd/Software-lab-report1/issues"
+  },
+  "homepage": "https://github.com/mahdiKhd/Software-lab-report1#readme",
+  "devDependencies": {
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0"
+  }
+}
