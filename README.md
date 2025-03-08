@@ -58,6 +58,16 @@ npm test
 
 Test files are located in the `tests` directory and follow the naming convention `*.test.js`.
 
+### CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- Automatically runs ESLint and Jest tests on pull requests
+- Ensures code quality before merging
+- Generates and uploads test coverage reports
+
+The workflow configuration is located in `.github/workflows/ci-cd.yml`.
+
 ### Code Reviews
 
 We follow a set of guidelines for code reviews to maintain code quality and consistency. Please refer to [CodeReviewGuidelines.md](CodeReviewGuidelines.md) for more information.
@@ -70,3 +80,41 @@ The dashboard is designed to be easily customizable:
 - **Modules**: Add or remove modules by modifying the HTML structure
 - **Data**: Replace the simulated data in `script.js` with your actual data sources
 - **Linting Rules**: Modify the ESLint configuration in `eslint.config.mjs`
+
+## Commit Message Standards
+
+For writing commit messages, use the following format:
+<type>(<scope>): <subject>
+
+Copy
+
+- **`type`:** Type of changes (e.g., `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`).
+- **`scope`:** Scope of changes (optional, e.g., module or file name).
+- **`subject`:** A short and clear description of the changes.
+
+**Examples:**
+feat(web-dashboard): add login button to the homepage
+fix(iot-sensors): resolve sensor data parsing error
+docs(readme): update commit message guidelines
+
+Copy
+
+## Milestones
+
+Key milestones for the project are as follows:
+
+- **`v0.1.0`:** Initial development of IoT sensors and web dashboard modules.
+- **`v0.2.0`:** Integration of the CI/CD pipeline.
+- **`v1.0.0`:** Release of the first version of the platform.
+
+To view the tags, use the following command:
+```bash
+git tag
+Copy
+
+#### **Git Tags:**
+```bash
+$ git tag
+v0.1.0
+v0.2.0
+v1.0.0
