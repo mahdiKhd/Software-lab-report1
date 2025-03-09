@@ -86,8 +86,6 @@ The dashboard is designed to be easily customizable:
 For writing commit messages, use the following format:
 <type>(<scope>): <subject>
 
-Copy
-
 - **`type`:** Type of changes (e.g., `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`).
 - **`scope`:** Scope of changes (optional, e.g., module or file name).
 - **`subject`:** A short and clear description of the changes.
@@ -96,8 +94,6 @@ Copy
 feat(web-dashboard): add login button to the homepage
 fix(iot-sensors): resolve sensor data parsing error
 docs(readme): update commit message guidelines
-
-Copy
 
 ## Milestones
 
@@ -111,6 +107,7 @@ To view the tags, use the following command:
 ```bash
 git tag
 Copy
+```
 
 #### **Git Tags:**
 ```bash
@@ -118,3 +115,4 @@ $ git tag
 v0.1.0
 v0.2.0
 v1.0.0
+```
